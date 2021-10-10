@@ -6,6 +6,7 @@ from ._constants import (
     FLUX_UNITS,
     SPECTRAL_UNITS,
     AREA_UNITS,
+    AREA_FACTORS,
     RADIATION_CONSTANTS,
     STEFAN_BOLTZMANN_CONSTANTS,
     WIEN_CONSTANTS,
@@ -37,17 +38,17 @@ def check_arguments(fn):
 
 @check_arguments
 def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
-    (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit, area_unit)]
+    (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit)]
 
     _planck_distribution = PLANCK_DISTRIBUTIONS[('energy', spectral_unit)]
 
-    return _planck_distribution(c1, c2, T, x)
+    return _planck_distribution(c1, c2, T, x)*AREA_FACTORS[area_unit]
 
 
 @check_arguments
 def spectral_photon_sterance(T, x, *, spectral_unit, area_unit):
-    (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit, area_unit)]
+    (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit)]
 
     _planck_distribution = PLANCK_DISTRIBUTIONS[('photon', spectral_unit)]
 
-    return _planck_distribution(c1, c2, T, x)
+    return _planck_distribution(c1, c2, T, x)*AREA_FACTORS[area_unit]
