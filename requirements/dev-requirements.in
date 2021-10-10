@@ -1,0 +1,5 @@
+-c setup.txt
+pip-tools
+pre-commit
+pytest
+sympy
