@@ -54,6 +54,8 @@ def _spectral_photon_sterance_sigma(c1, c2, T, sigma):
 PLANCK_DISTRIBUTIONS = {
     ('energy', 'Hz'): _spectral_radiant_sterance_nu,
     ('photon', 'Hz'): _spectral_photon_sterance_nu,
+    ('energy', 'THz'): _spectral_radiant_sterance_nu,
+    ('photon', 'THz'): _spectral_photon_sterance_nu,
     ('energy', 'um'): _spectral_radiant_sterance_lambda,
     ('photon', 'um'): _spectral_photon_sterance_lambda,
     ('energy', 'cm^-1'): _spectral_radiant_sterance_sigma,
