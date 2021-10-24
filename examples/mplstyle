@@ -1,0 +1,10 @@
+figure.constrained_layout.use: true
+
+axes.formatter.use_mathtext: True
+
+axes.labelsize : 12
+xtick.labelsize : 10
+ytick.labelsize : 10
+
+lines.linewidth : 2
+lines.markersize : 8
