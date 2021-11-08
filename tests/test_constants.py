@@ -10,6 +10,7 @@ import pytest
     itertools.product(*[bb.FLUX_UNITS, bb.SPECTRAL_UNITS])
 )
 def test_keys(flux_unit, spectral_unit):
+    assert (flux_unit, spectral_unit) in bb.PLANCK_DISTRIBUTIONS
     assert (flux_unit, spectral_unit) in bb.RADIATION_CONSTANTS
     assert (flux_unit, spectral_unit) in bb.STEFAN_BOLTZMANN_CONSTANTS
     assert (flux_unit, spectral_unit) in bb.WIEN_CONSTANTS
