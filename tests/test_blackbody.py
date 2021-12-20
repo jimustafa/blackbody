@@ -16,8 +16,12 @@ def T():
 
 
 @pytest.mark.parametrize(
-    'flux_unit,spectral_unit,method',
-    itertools.product(*[bb.FLUX_UNITS, bb.SPECTRAL_UNITS, ['scipy.integrate.quad', 'INTEGRATED_PLANCK_DISTRIBUTIONS']])
+    'method,flux_unit,spectral_unit',
+    itertools.product(
+        ['scipy.integrate.quad', 'INTEGRATED_PLANCK_DISTRIBUTIONS'],
+        bb.FLUX_UNITS,
+        bb.SPECTRAL_UNITS,
+    )
 )
 def test_Stefan_Boltzmann(T, flux_unit, spectral_unit, method):
     if method == 'scipy.integrate.quad':
@@ -49,7 +53,10 @@ def test_Stefan_Boltzmann(T, flux_unit, spectral_unit, method):
 
 @pytest.mark.parametrize(
     'flux_unit,spectral_unit',
-    itertools.product(*[bb.FLUX_UNITS, bb.SPECTRAL_UNITS])
+    itertools.product(
+        bb.FLUX_UNITS,
+        bb.SPECTRAL_UNITS
+    )
 )
 def test_Wien(T, flux_unit, spectral_unit):
     if spectral_unit in ['Hz', 'THz', 'cm^-1']:
@@ -62,4 +69,4 @@ def test_Wien(T, flux_unit, spectral_unit):
     if flux_unit == 'photon':
         L = lambda x: bb.spectral_photon_sterance(T, x, spectral_unit=spectral_unit, area_unit='m^2')
 
-    assert np.logical_and(L(x_ref) > L(x_ref*0.99), L(x_ref) > L(x_ref*1.01))
+    assert np.logical_and(L(x_ref) > L(x_ref*(1-1e-6)), L(x_ref) > L(x_ref*(1+1e-6)))
