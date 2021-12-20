@@ -11,10 +11,13 @@ from ._constants import (
     STEFAN_BOLTZMANN_CONSTANTS,
     WIEN_CONSTANTS,
 )
-from ._planck import PLANCK_DISTRIBUTIONS
+from ._planck import (
+    INTEGRATED_PLANCK_DISTRIBUTIONS,
+    PLANCK_DISTRIBUTIONS,
+)
 
 
-def check_arguments(fn):
+def check_arguments_spectral(fn):
     @wraps(fn)
     def wrapper(T, x, *, spectral_unit, area_unit):
         if spectral_unit not in SPECTRAL_UNITS:
@@ -36,7 +39,7 @@ def check_arguments(fn):
     return wrapper
 
 
-@check_arguments
+@check_arguments_spectral
 def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
     (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit)]
 
@@ -45,10 +48,53 @@ def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
     return _planck_distribution(c1, c2, T, x)*AREA_FACTORS[area_unit]
 
 
-@check_arguments
+@check_arguments_spectral
 def spectral_photon_sterance(T, x, *, spectral_unit, area_unit):
     (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit)]
 
     _planck_distribution = PLANCK_DISTRIBUTIONS[('photon', spectral_unit)]
 
     return _planck_distribution(c1, c2, T, x)*AREA_FACTORS[area_unit]
+
+
+def check_arguments_integrated(fn):
+    @wraps(fn)
+    def wrapper(T, x_ab, *, spectral_unit, area_unit):
+        if spectral_unit not in SPECTRAL_UNITS:
+            raise ValueError(f"`spectral_unit` must be one of {repr(SPECTRAL_UNITS)}")
+
+        if area_unit not in AREA_UNITS:
+            raise ValueError(f"`area_unit` must be one of {repr(AREA_UNITS)}")
+
+        T = np.atleast_1d(T).astype(np.float64, casting='safe')
+        x_ab = np.atleast_2d(x_ab)
+
+        if not np.all(T > 0):
+            raise ValueError("`T` must be greater than zero")
+
+        return fn(T, x_ab, spectral_unit=spectral_unit, area_unit=area_unit)
+    return wrapper
+
+
+@check_arguments_integrated
+def integrated_radiant_sterance(T, x_ab, *, spectral_unit, area_unit):
+    (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit)]
+
+    _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[('energy', spectral_unit)]
+
+    i1 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 0])
+    i2 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 1])
+
+    return np.abs(i2-i1)*AREA_FACTORS[area_unit]
+
+
+@check_arguments_integrated
+def integrated_photon_sterance(T, x_ab, *, spectral_unit, area_unit):
+    (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit)]
+
+    _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[('photon', spectral_unit)]
+
+    i1 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 0])
+    i2 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 1])
+
+    return np.abs(i2-i1)*AREA_FACTORS[area_unit]

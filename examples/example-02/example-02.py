@@ -48,9 +48,7 @@ sigma_ab = np.array([
 
 Tx = np.linspace(200, 300, 21)
 
-(c1, c2) = bb.RADIATION_CONSTANTS[('energy', 'cm^-1')]
-
-Le = 1e-4*bb._planck._integrated_radiant_sterance_sigma(c1, c2, Tx[..., np.newaxis], sigma_ab, 100)
+Le = bb.integrated_radiant_sterance(Tx[..., np.newaxis], sigma_ab, spectral_unit='cm^-1', area_unit='cm^2')
 
 (fig, ax) = plt.subplots()
 
