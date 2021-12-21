@@ -12,13 +12,13 @@ mpl.style.use([
 ])
 
 
-(fig, [ax1, ax2]) = plt.subplots(nrows=2, ncols=1, figsize=(9,6), sharex=True)
+(fig, [ax1, ax2]) = plt.subplots(nrows=2, ncols=1, figsize=(9, 6), sharex=True)
 
 nu = np.linspace(1e11, 8e13, 800)
 
 for T in [100, 200, 300, 400, 500]:
-    ax1.plot(nu, bb.spectral_radiant_sterance(T, nu, spectral_unit='Hz', area_unit='m^2'), label=f'$T={T}\,\mathrm{{K}}$')
-    ax2.plot(nu, bb.spectral_photon_sterance(T, nu, spectral_unit='Hz', area_unit='m^2'), label=f'$T={T}\,\mathrm{{K}}$')
+    ax1.plot(nu, bb.spectral_radiant_sterance(T, nu, spectral_unit='Hz', area_unit='m^2'), label=fR'$T={T}\,\mathrm{{K}}$')
+    ax2.plot(nu, bb.spectral_photon_sterance(T, nu, spectral_unit='Hz', area_unit='m^2'), label=fR'$T={T}\,\mathrm{{K}}$')
 
 Tx = np.linspace(10, 600, 60)
 nu_peak = bb.WIEN_CONSTANTS[('energy', 'Hz')]*Tx
@@ -48,13 +48,13 @@ ax2.set_ylim([0, 2e9])
 fig.savefig('spectral-sterance_nu.png')
 
 
-(fig, [ax1, ax2]) = plt.subplots(nrows=2, ncols=1, figsize=(9,6), sharex=True)
+(fig, [ax1, ax2]) = plt.subplots(nrows=2, ncols=1, figsize=(9, 6), sharex=True)
 
 xlambda = np.linspace(0.2, 25, 125)
 
 for T in [100, 200, 300, 400, 500]:
-    ax1.plot(xlambda, bb.spectral_radiant_sterance(T, xlambda, spectral_unit='um', area_unit='m^2'), label=f'$T={T}\,\mathrm{{K}}$')
-    ax2.plot(xlambda, bb.spectral_photon_sterance(T, xlambda, spectral_unit='um', area_unit='m^2'), label=f'$T={T}\,\mathrm{{K}}$')
+    ax1.plot(xlambda, bb.spectral_radiant_sterance(T, xlambda, spectral_unit='um', area_unit='m^2'), label=fR'$T={T}\,\mathrm{{K}}$')
+    ax2.plot(xlambda, bb.spectral_photon_sterance(T, xlambda, spectral_unit='um', area_unit='m^2'), label=fR'$T={T}\,\mathrm{{K}}$')
 
 Tx = np.linspace(10, 600, 60)
 lambda_peak = bb.WIEN_CONSTANTS[('energy', 'um')]/Tx
@@ -84,13 +84,13 @@ ax2.set_ylim([0, 2e21])
 fig.savefig('spectral-sterance_lambda.png')
 
 
-(fig, [ax1, ax2]) = plt.subplots(nrows=2, ncols=1, figsize=(9,6), sharex=True)
+(fig, [ax1, ax2]) = plt.subplots(nrows=2, ncols=1, figsize=(9, 6), sharex=True)
 
 sigma = np.linspace(10, 2000, 200)
 
 for T in [100, 200, 300, 400, 500]:
-    ax1.plot(sigma, bb.spectral_radiant_sterance(T, sigma, spectral_unit='cm^-1', area_unit='m^2'), label=f'$T={T}\,\mathrm{{K}}$')
-    ax2.plot(sigma, bb.spectral_photon_sterance(T, sigma, spectral_unit='cm^-1', area_unit='m^2'), label=f'$T={T}\,\mathrm{{K}}$')
+    ax1.plot(sigma, bb.spectral_radiant_sterance(T, sigma, spectral_unit='cm^-1', area_unit='m^2'), label=fR'$T={T}\,\mathrm{{K}}$')
+    ax2.plot(sigma, bb.spectral_photon_sterance(T, sigma, spectral_unit='cm^-1', area_unit='m^2'), label=fR'$T={T}\,\mathrm{{K}}$')
 
 Tx = np.linspace(10, 600, 60)
 sigma_peak = bb.WIEN_CONSTANTS[('energy', 'cm^-1')]*Tx

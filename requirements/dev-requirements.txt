@@ -6,6 +6,8 @@
 #
 attrs==21.2.0
     # via pytest
+autopep8==1.6.0
+    # via -r dev-requirements.in
 backports.entry-points-selectable==1.1.0
     # via virtualenv
 cfgv==3.3.1
@@ -16,11 +18,14 @@ distlib==0.3.3
     # via virtualenv
 filelock==3.3.0
     # via virtualenv
+flake8==4.0.1
+    # via -r dev-requirements.in
 identify==2.3.0
     # via pre-commit
-importlib-metadata==4.8.1
+importlib-metadata==4.2.0
     # via
     #   click
+    #   flake8
     #   pep517
     #   pluggy
     #   pre-commit
@@ -32,6 +37,8 @@ importlib-resources==5.2.2
     #   virtualenv
 iniconfig==1.1.1
     # via pytest
+mccabe==0.6.1
+    # via flake8
 mpmath==1.2.1
     # via sympy
 nodeenv==1.6.0
@@ -50,6 +57,12 @@ pre-commit==2.15.0
     # via -r dev-requirements.in
 py==1.10.0
     # via pytest
+pycodestyle==2.8.0
+    # via
+    #   autopep8
+    #   flake8
+pyflakes==2.4.0
+    # via flake8
 pyparsing==2.4.7
     # via packaging
 pytest==6.2.5
@@ -62,6 +75,7 @@ sympy==1.9
     # via -r dev-requirements.in
 toml==0.10.2
     # via
+    #   autopep8
     #   pre-commit
     #   pytest
 tomli==1.2.1

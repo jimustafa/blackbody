@@ -1,5 +1,3 @@
-import itertools
-
 import numpy as np
 from scipy.constants import c, h, k, sigma
 from scipy.special import lambertw, zeta

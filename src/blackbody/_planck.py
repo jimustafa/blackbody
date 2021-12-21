@@ -55,7 +55,7 @@ def _planck_integral_2(x, N=1024):
     x = np.atleast_1d(x)
     n = np.arange(N)+1
 
-    ex = np.exp(-n*x[...,np.newaxis])
+    ex = np.exp(-n*x[..., np.newaxis])
     xx = np.array([x**2, 2*x, 2*np.ones_like(x)])
     nx = np.array([1/n, 1/n**2, 1/n**3])
 
@@ -66,7 +66,7 @@ def _planck_integral_3(x, N=1024):
     x = np.atleast_1d(x)
     n = np.arange(N)+1
 
-    ex = np.exp(-n*x[...,np.newaxis])
+    ex = np.exp(-n*x[..., np.newaxis])
     xx = np.array([x**3, 3*x**2, 6*x, 6*np.ones_like(x)])
     nx = np.array([1/n, 1/n**2, 1/n**3, 1/n**4])
 

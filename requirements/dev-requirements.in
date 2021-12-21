@@ -1,4 +1,6 @@
 -c setup.txt
+autopep8
+flake8
 pip-tools
 pre-commit
 pytest
