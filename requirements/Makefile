@@ -1,15 +1,12 @@
 .PHONY: all
-all: setup.txt dev-requirements.txt
+all: dev-requirements.txt
 
 .PHONY: install
-install: setup.txt dev-requirements.txt
+install: dev-requirements.txt
 	pip-sync $^
 	pip install -e ../[examples]
 
-setup.txt: ../setup.py
-	pip-compile $< --output-file $@
-
-dev-requirements.txt: dev-requirements.in setup.txt
+dev-requirements.txt: dev-requirements.in
 	pip-compile $<
 
 .PHONY: clean
