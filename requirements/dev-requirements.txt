@@ -4,24 +4,31 @@
 #
 #    pip-compile dev-requirements.in
 #
+-e file:../
+    # via -r dev-requirements.in
 attrs==21.2.0
     # via pytest
 autopep8==1.6.0
     # via -r dev-requirements.in
-backports.entry-points-selectable==1.1.0
+backports-entry-points-selectable==1.1.0
     # via virtualenv
 cfgv==3.3.1
     # via pre-commit
 click==8.0.1
     # via pip-tools
+cycler==0.11.0
+    # via matplotlib
 distlib==0.3.3
     # via virtualenv
 filelock==3.3.0
     # via virtualenv
+fonttools==4.33.3
+    # via matplotlib
 identify==2.3.0
     # via pre-commit
 importlib-metadata==4.2.0
     # via
+    #   backports-entry-points-selectable
     #   click
     #   pep517
     #   pluggy
@@ -30,14 +37,27 @@ importlib-metadata==4.2.0
     #   virtualenv
 iniconfig==1.1.1
     # via pytest
+kiwisolver==1.4.2
+    # via matplotlib
+matplotlib==3.5.2
+    # via blackbody
 mpmath==1.2.1
     # via sympy
 nodeenv==1.6.0
     # via pre-commit
+numpy==1.21.6
+    # via
+    #   blackbody
+    #   matplotlib
+    #   scipy
 packaging==21.0
-    # via pytest
+    # via
+    #   matplotlib
+    #   pytest
 pep517==0.11.0
     # via pip-tools
+pillow==9.1.0
+    # via matplotlib
 pip-tools==6.6.0
     # via -r dev-requirements.in
 platformdirs==2.4.0
@@ -51,13 +71,21 @@ py==1.10.0
 pycodestyle==2.8.0
     # via autopep8
 pyparsing==2.4.7
-    # via packaging
+    # via
+    #   matplotlib
+    #   packaging
 pytest==6.2.5
     # via -r dev-requirements.in
+python-dateutil==2.8.2
+    # via matplotlib
 pyyaml==5.4.1
     # via pre-commit
+scipy==1.7.3
+    # via blackbody
 six==1.16.0
-    # via virtualenv
+    # via
+    #   python-dateutil
+    #   virtualenv
 sympy==1.9
     # via -r dev-requirements.in
 toml==0.10.2
@@ -68,7 +96,9 @@ toml==0.10.2
 tomli==1.2.1
     # via pep517
 typing-extensions==3.10.0.2
-    # via importlib-metadata
+    # via
+    #   importlib-metadata
+    #   kiwisolver
 virtualenv==20.8.1
     # via pre-commit
 wheel==0.37.0

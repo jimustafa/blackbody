@@ -1,3 +1,4 @@
+-e file:../[examples]
 autopep8
 pip-tools
 pre-commit
