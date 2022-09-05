@@ -58,6 +58,18 @@ def check_arguments_spectral(fn):
 
 @check_arguments_spectral
 def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
+    """
+    Spectral radiant sterance
+
+    Arguments:
+        T: blackbody temperature (K)
+        x: spectral variable in units of `spectral_unit`
+        spectral_unit: units of the spectral variable
+        area_unit: units of the area element
+
+    Returns:
+        spectral radiant sterance
+    """
     (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit)]
 
     _planck_distribution = PLANCK_DISTRIBUTIONS[('energy', spectral_unit)]
@@ -67,6 +79,19 @@ def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
 
 @check_arguments_spectral
 def spectral_photon_sterance(T, x, *, spectral_unit, area_unit):
+    """
+    Spectral photon sterance
+
+    Arguments:
+        T: blackbody temperature (K)
+        x: spectral variable in units of `spectral_unit`
+        spectral_unit: units of the spectral variable
+        area_unit: units of the area element
+
+    Returns:
+        spectral photon sterance
+
+    """
     (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit)]
 
     _planck_distribution = PLANCK_DISTRIBUTIONS[('photon', spectral_unit)]
@@ -95,6 +120,18 @@ def check_arguments_integrated(fn):
 
 @check_arguments_integrated
 def integrated_radiant_sterance(T, x_ab, *, spectral_unit, area_unit):
+    """
+    Integrated radiant sterance
+
+    Arguments:
+        T: blackbody temperature (K)
+        x_ab: spectral interval in units of `spectral_unit`
+        spectral_unit: units of the spectral variable
+        area_unit: units of the area element
+
+    Returns:
+        integrated radiant sterance
+    """
     (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit)]
 
     _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[('energy', spectral_unit)]
@@ -107,6 +144,18 @@ def integrated_radiant_sterance(T, x_ab, *, spectral_unit, area_unit):
 
 @check_arguments_integrated
 def integrated_photon_sterance(T, x_ab, *, spectral_unit, area_unit):
+    """
+    Integrated photon sterance
+
+    Arguments:
+        T: blackbody temperature (K)
+        x_ab: spectral interval in units of `spectral_unit`
+        spectral_unit: units of the spectral variable
+        area_unit: units of the area element
+
+    Returns:
+        integrated photon sterance
+    """
     (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit)]
 
     _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[('photon', spectral_unit)]

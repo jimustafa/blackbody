@@ -1,0 +1,39 @@
+site_name: blackbody
+site_url: https://jimustafa.github.io/blackbody/
+site_author: Jamal Mustafa
+
+repo_name: jimustafa/blackbody
+repo_url: https://github.com/jimustafa/blackbody
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            members_order: source
+            show_root_toc_entry: false
+      watch:
+        - src/blackbody
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jimustafa
+
+nav:
+  - Home: index.md
+  - API Reference: api.md

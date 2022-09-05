@@ -1,5 +1,7 @@
 -e file:../[examples]
 autopep8
+mkdocs-material
+mkdocstrings[python]
 pip-tools
 pre-commit
 pytest
