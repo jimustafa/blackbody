@@ -2,6 +2,7 @@
 autopep8
 mkdocs-material
 mkdocstrings[python]
+mypy
 pip-tools
 pre-commit
 pytest

@@ -88,6 +88,10 @@ mkdocstrings-python==0.7.1
     # via mkdocstrings
 mpmath==1.2.1
     # via sympy
+mypy==0.971
+    # via -r dev-requirements.in
+mypy-extensions==0.4.3
+    # via mypy
 nodeenv==1.6.0
     # via pre-commit
 numpy==1.21.6
@@ -153,11 +157,16 @@ toml==0.10.2
     #   pre-commit
     #   pytest
 tomli==1.2.1
-    # via pep517
+    # via
+    #   mypy
+    #   pep517
+typed-ast==1.5.4
+    # via mypy
 typing-extensions==3.10.0.2
     # via
     #   importlib-metadata
     #   kiwisolver
+    #   mypy
 virtualenv==20.8.1
     # via pre-commit
 watchdog==2.1.9
