@@ -18,8 +18,8 @@ ax2 = ax1.twinx()
 x1 = np.linspace(0, 18, 37)
 x2 = np.linspace(18, 35, 35)
 
-ax1.plot(x1, bb._planck._planck_integral_3(x1, 100))
-ax2.plot(x2, bb._planck._planck_integral_3(x2, 100))
+ax1.plot(x1, bb._planck._planck_integral_3(x1, 100))    # type: ignore
+ax2.plot(x2, bb._planck._planck_integral_3(x2, 100))    # type: ignore
 
 ax1.axvline(18, color='black', linestyle='dashed')
 
