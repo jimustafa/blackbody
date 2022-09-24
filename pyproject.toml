@@ -1,12 +1,44 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "blackbody"
+description = "A Python library for computing blackbody radiation"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [
+  { name = "Jamal Mustafa" },
+]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+]
+dependencies = [
+  "numpy",
+  "scipy",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+examples = [
+  "matplotlib"
+]
+
+[project.urls]
+Documentation = "https://github.com/jimustafa/blackbody#readme"
+Issues = "https://github.com/jimustafa/blackbody/issues"
+Source = "https://github.com/jimustafa/blackbody"
 
 [tool.autopep8]
 select = ["E231"]
 
 [tool.coverage.report]
 show_missing = true
+
+[tool.hatch.version]
+path = "src/blackbody/__about__.py"
 
 [tool.pytest.ini_options]
 minversion = "6.0"

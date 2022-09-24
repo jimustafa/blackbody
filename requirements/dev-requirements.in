@@ -1,5 +1,6 @@
 -e file:../[examples]
 autopep8
+hatch
 mkdocs-material
 mkdocstrings[python]
 mypy

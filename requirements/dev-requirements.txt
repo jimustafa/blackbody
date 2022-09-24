@@ -6,29 +6,43 @@
 #
 -e file:../
     # via -r dev-requirements.in
+anyio==3.6.1
+    # via httpcore
 attrs==21.2.0
     # via
     #   pytest
     #   pytest-mypy
 autopep8==1.6.0
     # via -r dev-requirements.in
-backports-entry-points-selectable==1.1.0
-    # via virtualenv
 cached-property==1.5.2
     # via griffe
+certifi==2022.9.24
+    # via
+    #   httpcore
+    #   httpx
+cffi==1.15.1
+    # via cryptography
 cfgv==3.3.1
     # via pre-commit
-click==8.0.1
+click==8.1.3
     # via
+    #   hatch
     #   mkdocs
     #   pip-tools
+    #   userpath
+commonmark==0.9.1
+    # via rich
 coverage[toml]==6.4.4
     # via pytest-cov
+cryptography==38.0.1
+    # via secretstorage
 cycler==0.11.0
     # via matplotlib
-distlib==0.3.3
+distlib==0.3.6
     # via virtualenv
-filelock==3.3.0
+editables==0.3
+    # via hatchling
+filelock==3.8.0
     # via
     #   pytest-mypy
     #   virtualenv
@@ -38,12 +52,30 @@ ghp-import==2.1.0
     # via mkdocs
 griffe==0.22.0
     # via mkdocstrings-python
+h11==0.12.0
+    # via httpcore
+hatch==1.5.0
+    # via -r dev-requirements.in
+hatchling==1.10.0
+    # via hatch
+httpcore==0.15.0
+    # via httpx
+httpx==0.23.0
+    # via hatch
+hyperlink==21.0.0
+    # via hatch
 identify==2.3.0
     # via pre-commit
+idna==3.4
+    # via
+    #   anyio
+    #   hyperlink
+    #   rfc3986
 importlib-metadata==4.12.0
     # via
-    #   backports-entry-points-selectable
     #   click
+    #   hatchling
+    #   keyring
     #   markdown
     #   mkdocs
     #   pep517
@@ -53,11 +85,19 @@ importlib-metadata==4.12.0
     #   virtualenv
 iniconfig==1.1.1
     # via pytest
+jaraco-classes==3.2.2
+    # via keyring
+jeepney==0.8.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.2
     # via
     #   mkdocs
     #   mkdocs-material
     #   mkdocstrings
+keyring==23.9.3
+    # via hatch
 kiwisolver==1.4.2
     # via matplotlib
 markdown==3.3.7
@@ -92,6 +132,8 @@ mkdocstrings[python]==0.19.0
     #   mkdocstrings-python
 mkdocstrings-python==0.7.1
     # via mkdocstrings
+more-itertools==8.14.0
+    # via jaraco-classes
 mpmath==1.2.1
     # via sympy
 mypy==0.971
@@ -107,29 +149,44 @@ numpy==1.21.6
     #   blackbody
     #   matplotlib
     #   scipy
-packaging==21.0
+packaging==21.3
     # via
+    #   hatchling
     #   matplotlib
     #   mkdocs
     #   pytest
+pathspec==0.10.1
+    # via hatchling
 pep517==0.11.0
     # via pip-tools
+pexpect==4.8.0
+    # via hatch
 pillow==9.1.0
     # via matplotlib
 pip-tools==6.6.0
     # via -r dev-requirements.in
-platformdirs==2.4.0
-    # via virtualenv
+platformdirs==2.5.2
+    # via
+    #   hatch
+    #   virtualenv
 pluggy==1.0.0
-    # via pytest
+    # via
+    #   hatchling
+    #   pytest
 pre-commit==2.15.0
     # via -r dev-requirements.in
+ptyprocess==0.7.0
+    # via pexpect
 py==1.10.0
     # via pytest
 pycodestyle==2.8.0
     # via autopep8
+pycparser==2.21
+    # via cffi
 pygments==2.13.0
-    # via mkdocs-material
+    # via
+    #   mkdocs-material
+    #   rich
 pymdown-extensions==9.5
     # via
     #   mkdocs-material
@@ -138,6 +195,8 @@ pyparsing==2.4.7
     # via
     #   matplotlib
     #   packaging
+pyperclip==1.8.2
+    # via hatch
 pytest==6.2.5
     # via
     #   -r dev-requirements.in
@@ -158,12 +217,23 @@ pyyaml==5.4.1
     #   pyyaml-env-tag
 pyyaml-env-tag==0.1
     # via mkdocs
+rfc3986[idna2008]==1.5.0
+    # via httpx
+rich==12.5.1
+    # via hatch
 scipy==1.7.3
     # via blackbody
+secretstorage==3.3.3
+    # via keyring
+shellingham==1.5.0
+    # via hatch
 six==1.16.0
+    # via python-dateutil
+sniffio==1.3.0
     # via
-    #   python-dateutil
-    #   virtualenv
+    #   anyio
+    #   httpcore
+    #   httpx
 sympy==1.9
     # via -r dev-requirements.in
 toml==0.10.2
@@ -171,20 +241,31 @@ toml==0.10.2
     #   autopep8
     #   pre-commit
     #   pytest
-tomli==1.2.1
+tomli==2.0.1
     # via
     #   coverage
+    #   hatchling
     #   mypy
     #   pep517
+tomli-w==1.0.0
+    # via hatch
+tomlkit==0.11.4
+    # via hatch
 typed-ast==1.5.4
     # via mypy
-typing-extensions==3.10.0.2
+typing-extensions==4.3.0
     # via
+    #   anyio
     #   importlib-metadata
     #   kiwisolver
     #   mypy
-virtualenv==20.8.1
-    # via pre-commit
+    #   rich
+userpath==1.8.0
+    # via hatch
+virtualenv==20.16.5
+    # via
+    #   hatch
+    #   pre-commit
 watchdog==2.1.9
     # via mkdocs
 wheel==0.37.0
