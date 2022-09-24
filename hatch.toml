@@ -1,0 +1,22 @@
+[envs.default]
+dependencies = [
+  "pre-commit",
+]
+
+[envs.docs]
+dependencies = [
+  "mkdocs-material",
+  "mkdocstrings[python]",
+]
+[envs.docs.scripts]
+build = "mkdocs build"
+serve = "mkdocs serve"
+
+[envs.tests]
+dependencies = [
+  "pytest",
+  "pytest-cov",
+  "pytest-mypy",
+]
+[envs.tests.scripts]
+run = "pytest"
