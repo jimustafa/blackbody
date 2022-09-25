@@ -13,6 +13,9 @@ build = "mkdocs build"
 serve = "mkdocs serve"
 
 [envs.tests]
+features = [
+  "examples",
+]
 dependencies = [
   "pytest",
   "pytest-cov",

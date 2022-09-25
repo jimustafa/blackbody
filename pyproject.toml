@@ -42,4 +42,4 @@ path = "src/blackbody/__about__.py"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--mypy --cov=blackbody"
+addopts = "-v --mypy --cov=blackbody"
