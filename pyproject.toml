@@ -37,8 +37,20 @@ select = ["E231"]
 [tool.coverage.report]
 show_missing = true
 
+[tool.flake8]
+ignore = [
+  "E20", "E22", "E501", "E731",
+]
+
 [tool.hatch.version]
 path = "src/blackbody/__about__.py"
+
+[[tool.mypy.overrides]]
+module = [
+  "matplotlib.*",
+  "scipy.*",
+]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 minversion = "6.0"
