@@ -27,7 +27,7 @@ examples = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/jimustafa/blackbody#readme"
+Documentation = "https://jimustafa.github.io/blackbody"
 Issues = "https://github.com/jimustafa/blackbody/issues"
 Source = "https://github.com/jimustafa/blackbody"
 
