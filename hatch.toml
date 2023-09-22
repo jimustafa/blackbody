@@ -1,3 +1,6 @@
+[build]
+only-packages = true
+
 [envs.default]
 dependencies = [
   "pre-commit",
