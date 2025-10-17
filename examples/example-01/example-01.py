@@ -41,9 +41,9 @@ for ax in [ax1, ax2]:
 ax2.set_xlabel('Frequency (Hz)')
 ax1.set_ylabel('Spectral Sterance\n(W m$^{-2}$ sr$^{-1}$ Hz$^{-1}$)')
 ax2.set_ylabel('Spectral Sterance\n(photons s$^{-1}$ m$^{-2}$ sr$^{-1}$ Hz$^{-1}$)')
-ax2.set_xlim([0, 8e13])
-ax1.set_ylim([0, 2.5e-11])
-ax2.set_ylim([0, 2e9])
+ax2.set_xlim(0, 8e13)
+ax1.set_ylim(0, 2.5e-11)
+ax2.set_ylim(0, 2e9)
 
 fig.savefig('spectral-sterance_nu.png')
 
@@ -77,9 +77,9 @@ for ax in [ax1, ax2]:
 ax2.set_xlabel('Wavelength (µm)')
 ax1.set_ylabel('Spectral Sterance\n(W m$^{-2}$ sr$^{-1}$ µm$^{-1}$)')
 ax2.set_ylabel('Spectral Sterance\n(photons s$^{-1}$ m$^{-2}$ sr$^{-1}$ µm$^{-1}$)')
-ax2.set_xlim([0, 25])
-ax1.set_ylim([0, 50])
-ax2.set_ylim([0, 2e21])
+ax2.set_xlim(0, 25)
+ax1.set_ylim(0, 50)
+ax2.set_ylim(0, 2e21)
 
 fig.savefig('spectral-sterance_lambda.png')
 
@@ -113,8 +113,8 @@ for ax in [ax1, ax2]:
 ax2.set_xlabel('Wavenumber (cm$^{-1}$)')
 ax1.set_ylabel('Spectral Sterance\n(W m$^{-2}$ sr$^{-1}$ (cm$^{-1}$)$^{-1}$)')
 ax2.set_ylabel('Spectral Sterance\n(photons s$^{-1}$ m$^{-2}$ sr$^{-1}$ (cm$^{-1}$)$^{-1}$)')
-ax2.set_xlim([0, 2000])
-ax1.set_ylim([0, 0.8])
-ax2.set_ylim([0, 5e19])
+ax2.set_xlim(0, 2000)
+ax1.set_ylim(0, 0.8)
+ax2.set_ylim(0, 5e19)
 
 fig.savefig('spectral-sterance_sigma.png')

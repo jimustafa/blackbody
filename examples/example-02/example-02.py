@@ -27,13 +27,13 @@ ax1.set_xlabel('$x$')
 ax1.set_ylabel(R'$\int_x^\infty \mathrm{d}x \frac{x^3}{e^x-1}$')
 ax2.set_ylabel(R'$\int_x^\infty \mathrm{d}x \frac{x^3}{e^x-1}$')
 
-ax1.set_xlim([0, 35])
+ax1.set_xlim(0, 35)
 ax1.set_yscale('log')
-ax1.set_ylim([1e-4, 1e1])
+ax1.set_ylim(1e-4, 1e1)
 ax1.grid(True)
 
 ax2.set_yscale('log')
-ax2.set_ylim([1e-9, 1e-4])
+ax2.set_ylim(1e-9, 1e-4)
 
 fig.savefig('Widger–Woodall_Fig2.png')
 
@@ -62,7 +62,7 @@ ax.set_xlabel('Temperature (K)')
 ax.set_ylabel('Radiant Sterance (W cm$^{-2}$ sr$^{-1}$)')
 
 ax.set_yscale('log')
-ax.set_ylim([1e-7, 1e-2])
+ax.set_ylim(1e-7, 1e-2)
 ax.grid(True)
 
 fig.savefig('Widger–Woodall_Fig3.png')
