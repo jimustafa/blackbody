@@ -1,7 +1,0 @@
-FLUX_UNITS: list[str]
-SPECTRAL_UNITS: list[str]
-AREA_UNITS: list[str]
-AREA_FACTORS: dict[str, float]
-STEFAN_BOLTZMANN_CONSTANTS: dict[tuple[str, str], float]
-WIEN_CONSTANTS: dict[tuple[str, str], float]
-RADIATION_CONSTANTS: dict[tuple[str, str], float]

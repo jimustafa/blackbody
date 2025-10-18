@@ -28,9 +28,9 @@ def test_Stefan_Boltzmann(T, flux_unit, spectral_unit, method):
         if spectral_unit == 'Hz':
             pytest.skip()
         if flux_unit == 'energy':
-            L = lambda x: bb.spectral_radiant_sterance(T, x, spectral_unit=spectral_unit, area_unit='m^2')
+            L = lambda x: bb.spectral_radiant_sterance(T, x, spectral_unit=spectral_unit, area_unit='m^2')[0]
         if flux_unit == 'photon':
-            L = lambda x: bb.spectral_photon_sterance(T, x, spectral_unit=spectral_unit, area_unit='m^2')
+            L = lambda x: bb.spectral_photon_sterance(T, x, spectral_unit=spectral_unit, area_unit='m^2')[0]
         L_integral = scipy.integrate.quad(L, 0, np.inf)[0]
 
     if method == 'INTEGRATED_PLANCK_DISTRIBUTIONS':

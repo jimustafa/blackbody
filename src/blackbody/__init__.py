@@ -1,6 +1,8 @@
 from functools import wraps
+from typing import Callable, cast
 
 import numpy as np
+from numpy.typing import ArrayLike, NDArray
 
 from ._constants import (
     FLUX_UNITS,
@@ -34,9 +36,9 @@ __all__ = [
 ]
 
 
-def check_arguments_spectral(fn):
+def check_arguments_spectral(fn: Callable) -> Callable:
     @wraps(fn)
-    def wrapper(T, x, *, spectral_unit, area_unit):
+    def wrapper(T: ArrayLike, x: ArrayLike, *, spectral_unit: str, area_unit: str) -> NDArray[np.float64]:
         if spectral_unit not in SPECTRAL_UNITS:
             raise ValueError(f"`spectral_unit` must be one of {repr(SPECTRAL_UNITS)}")
 
@@ -57,7 +59,7 @@ def check_arguments_spectral(fn):
 
 
 @check_arguments_spectral
-def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
+def spectral_radiant_sterance(T: ArrayLike, x: ArrayLike, *, spectral_unit: str, area_unit: str) -> NDArray[np.float64]:
     """
     Spectral radiant sterance
 
@@ -70,6 +72,9 @@ def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
     Returns:
         spectral radiant sterance
     """
+    T = cast(NDArray[np.float64], T)
+    x = cast(NDArray[np.float64], x)
+
     (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit)]
 
     _planck_distribution = PLANCK_DISTRIBUTIONS[('energy', spectral_unit)]
@@ -78,7 +83,7 @@ def spectral_radiant_sterance(T, x, *, spectral_unit, area_unit):
 
 
 @check_arguments_spectral
-def spectral_photon_sterance(T, x, *, spectral_unit, area_unit):
+def spectral_photon_sterance(T: ArrayLike, x: ArrayLike, *, spectral_unit: str, area_unit: str) -> NDArray[np.float64]:
     """
     Spectral photon sterance
 
@@ -92,6 +97,9 @@ def spectral_photon_sterance(T, x, *, spectral_unit, area_unit):
         spectral photon sterance
 
     """
+    T = cast(NDArray[np.float64], T)
+    x = cast(NDArray[np.float64], x)
+
     (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit)]
 
     _planck_distribution = PLANCK_DISTRIBUTIONS[('photon', spectral_unit)]
@@ -99,9 +107,9 @@ def spectral_photon_sterance(T, x, *, spectral_unit, area_unit):
     return _planck_distribution(c1, c2, T, x)*AREA_FACTORS[area_unit]
 
 
-def check_arguments_integrated(fn):
+def check_arguments_integrated(fn: Callable) -> Callable:
     @wraps(fn)
-    def wrapper(T, x_ab, *, spectral_unit, area_unit):
+    def wrapper(T: ArrayLike, x_ab: ArrayLike, *, spectral_unit: str, area_unit: str) -> NDArray[np.float64]:
         if spectral_unit not in SPECTRAL_UNITS:
             raise ValueError(f"`spectral_unit` must be one of {repr(SPECTRAL_UNITS)}")
 
@@ -119,7 +127,7 @@ def check_arguments_integrated(fn):
 
 
 @check_arguments_integrated
-def integrated_radiant_sterance(T, x_ab, *, spectral_unit, area_unit):
+def integrated_radiant_sterance(T: ArrayLike, x_ab: ArrayLike, *, spectral_unit: str, area_unit: str) -> NDArray[np.float64]:
     """
     Integrated radiant sterance
 
@@ -132,6 +140,9 @@ def integrated_radiant_sterance(T, x_ab, *, spectral_unit, area_unit):
     Returns:
         integrated radiant sterance
     """
+    T = cast(NDArray[np.float64], T)
+    x_ab = cast(NDArray[np.float64], x_ab)
+
     (c1, c2) = RADIATION_CONSTANTS[('energy', spectral_unit)]
 
     _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[('energy', spectral_unit)]
@@ -143,7 +154,7 @@ def integrated_radiant_sterance(T, x_ab, *, spectral_unit, area_unit):
 
 
 @check_arguments_integrated
-def integrated_photon_sterance(T, x_ab, *, spectral_unit, area_unit):
+def integrated_photon_sterance(T: ArrayLike, x_ab: ArrayLike, *, spectral_unit: str, area_unit: str) -> NDArray[np.float64]:
     """
     Integrated photon sterance
 
@@ -156,6 +167,9 @@ def integrated_photon_sterance(T, x_ab, *, spectral_unit, area_unit):
     Returns:
         integrated photon sterance
     """
+    T = cast(NDArray[np.float64], T)
+    x_ab = cast(NDArray[np.float64], x_ab)
+
     (c1, c2) = RADIATION_CONSTANTS[('photon', spectral_unit)]
 
     _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[('photon', spectral_unit)]

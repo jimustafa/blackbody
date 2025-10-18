@@ -1,4 +1,7 @@
+from typing import Callable
+
 import numpy as np
+from numpy.typing import NDArray
 
 from ._constants import EMAXEXP
 
@@ -9,7 +12,7 @@ __all__ = [
 ]
 
 
-def _spectral_radiant_sterance_nu(c1, c2, T, nu):
+def _spectral_radiant_sterance_nu(c1: float, c2: float, T: NDArray[np.float64], nu: NDArray[np.float64]):
     x = nu/T
     xmax = EMAXEXP/c2
     x[x>xmax] = xmax
@@ -17,7 +20,7 @@ def _spectral_radiant_sterance_nu(c1, c2, T, nu):
     return c1*nu**3 * 1/(np.exp(c2*x)-1)
 
 
-def _spectral_photon_sterance_nu(c1, c2, T, nu):
+def _spectral_photon_sterance_nu(c1: float, c2: float, T: NDArray[np.float64], nu: NDArray[np.float64]):
     x = nu/T
     xmax = EMAXEXP/c2
     x[x>xmax] = xmax
@@ -25,7 +28,7 @@ def _spectral_photon_sterance_nu(c1, c2, T, nu):
     return c1*nu**2 * 1/(np.exp(c2*x)-1)
 
 
-def _spectral_radiant_sterance_lambda(c1, c2, T, xlambda):
+def _spectral_radiant_sterance_lambda(c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]):
     x = 1/(xlambda*T)
     xmax = EMAXEXP/c2
     x[x>xmax] = xmax
@@ -33,7 +36,7 @@ def _spectral_radiant_sterance_lambda(c1, c2, T, xlambda):
     return c1/xlambda**5 * 1/(np.exp(c2*x)-1)
 
 
-def _spectral_photon_sterance_lambda(c1, c2, T, xlambda):
+def _spectral_photon_sterance_lambda(c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]):
     x = 1/(xlambda*T)
     xmax = EMAXEXP/c2
     x[x>xmax] = xmax
@@ -41,7 +44,7 @@ def _spectral_photon_sterance_lambda(c1, c2, T, xlambda):
     return c1/xlambda**4 * 1/(np.exp(c2*x)-1)
 
 
-def _spectral_radiant_sterance_sigma(c1, c2, T, sigma):
+def _spectral_radiant_sterance_sigma(c1: float, c2: float, T: NDArray[np.float64], sigma: NDArray[np.float64]):
     x = sigma/T
     xmax = EMAXEXP/c2
     x[x>xmax] = xmax
@@ -49,7 +52,7 @@ def _spectral_radiant_sterance_sigma(c1, c2, T, sigma):
     return c1*sigma**3 * 1/(np.exp(c2*x)-1)
 
 
-def _spectral_photon_sterance_sigma(c1, c2, T, sigma):
+def _spectral_photon_sterance_sigma(c1: float, c2: float, T: NDArray[np.float64], sigma: NDArray[np.float64]):
     x = sigma/T
     xmax = EMAXEXP/c2
     x[x>xmax] = xmax
@@ -79,31 +82,31 @@ def _planck_integral_3(x, N=1024):
     return np.einsum('...n,i...,in->...', ex, xx, nx)
 
 
-def _integrated_radiant_sterance_nu(c1, c2, T, nu):
+def _integrated_radiant_sterance_nu(c1: float, c2: float, T: NDArray[np.float64], nu: NDArray[np.float64]):
     return c1/c2**4*T**4*_planck_integral_3(c2*nu/T)
 
 
-def _integrated_photon_sterance_nu(c1, c2, T, nu):
+def _integrated_photon_sterance_nu(c1: float, c2: float, T: NDArray[np.float64], nu: NDArray[np.float64]):
     return c1/c2**3*T**3*_planck_integral_2(c2*nu/T)
 
 
-def _integrated_radiant_sterance_lambda(c1, c2, T, xlambda):
+def _integrated_radiant_sterance_lambda(c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]):
     return c1/c2**4*T**4*_planck_integral_3(c2/xlambda/T)
 
 
-def _integrated_photon_sterance_lambda(c1, c2, T, xlambda):
+def _integrated_photon_sterance_lambda(c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]):
     return c1/c2**3*T**3*_planck_integral_2(c2/xlambda/T)
 
 
-def _integrated_radiant_sterance_sigma(c1, c2, T, sigma):
+def _integrated_radiant_sterance_sigma(c1: float, c2: float, T: NDArray[np.float64], sigma: NDArray[np.float64]):
     return c1/c2**4*T**4*_planck_integral_3(c2*sigma/T)
 
 
-def _integrated_photon_sterance_sigma(c1, c2, T, sigma):
+def _integrated_photon_sterance_sigma(c1: float, c2: float, T: NDArray[np.float64], sigma: NDArray[np.float64]):
     return c1/c2**3*T**3*_planck_integral_2(c2*sigma/T)
 
 
-PLANCK_DISTRIBUTIONS = {
+PLANCK_DISTRIBUTIONS: dict[tuple[str, str], Callable[[float, float, NDArray[np.float64], NDArray[np.float64]], NDArray[np.float64]]] = {
     ('energy', 'Hz'): _spectral_radiant_sterance_nu,
     ('photon', 'Hz'): _spectral_photon_sterance_nu,
     ('energy', 'THz'): _spectral_radiant_sterance_nu,
@@ -115,7 +118,7 @@ PLANCK_DISTRIBUTIONS = {
 }
 
 
-INTEGRATED_PLANCK_DISTRIBUTIONS = {
+INTEGRATED_PLANCK_DISTRIBUTIONS: dict[tuple[str, str], Callable[[float, float, NDArray[np.float64], NDArray[np.float64]], NDArray[np.float64]]] = {
     ('energy', 'Hz'): _integrated_radiant_sterance_nu,
     ('photon', 'Hz'): _integrated_photon_sterance_nu,
     ('energy', 'THz'): _integrated_radiant_sterance_nu,

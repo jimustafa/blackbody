@@ -16,29 +16,29 @@ __all__ = [
 
 EMAXEXP = np.log(2)*np.finfo(np.float64).maxexp
 
-FLUX_UNITS = [
+FLUX_UNITS: list[str] = [
     'energy',
     'photon',
 ]
 
-SPECTRAL_UNITS = [
+SPECTRAL_UNITS: list[str] = [
     'Hz',
     'THz',
     'um',
     'cm^-1',
 ]
 
-AREA_UNITS = [
+AREA_UNITS: list[str] = [
     'm^2',
     'cm^2',
 ]
 
-AREA_FACTORS = {
+AREA_FACTORS: dict[str, float] = {
     'm^2': 1,
     'cm^2': 1/1e4,
 }
 
-STEFAN_BOLTZMANN_CONSTANTS = {
+STEFAN_BOLTZMANN_CONSTANTS: dict[tuple[str, str], float] = {
     ('energy' , 'Hz'   ): sigma,
     ('photon' , 'Hz'   ): 4*np.pi*zeta(3)*k**3/h**3/c**2,
     ('energy' , 'THz'  ): sigma,
@@ -49,7 +49,7 @@ STEFAN_BOLTZMANN_CONSTANTS = {
     ('photon' , 'cm^-1'): 4*np.pi*zeta(3)*k**3/h**3/c**2,
 }
 
-WIEN_CONSTANTS = {
+WIEN_CONSTANTS: dict[tuple[str, str], float] = {
     ('energy' , 'Hz'   ): k/h*abs((3+lambertw(-3*np.exp(-3), 0))),
     ('photon' , 'Hz'   ): k/h*abs((2+lambertw(-2*np.exp(-2), 0))),
     ('energy' , 'THz'  ): 1/1e12*k/h*abs((3+lambertw(-3*np.exp(-3), 0))),
@@ -60,7 +60,7 @@ WIEN_CONSTANTS = {
     ('photon' , 'cm^-1'): k/(100*h*c)*abs((2+lambertw(-2*np.exp(-2), 0))),
 }
 
-RADIATION_CONSTANTS = {
+RADIATION_CONSTANTS: dict[tuple[str, str], tuple[float, float]] = {
     ('energy' , 'Hz'   ): (2*h/c**2      , h  /k     ),
     ('photon' , 'Hz'   ): (2  /c**2      , h  /k     ),
     ('energy' , 'THz'  ): (2*h/c**2*1e48 , h  /k*1e12),
