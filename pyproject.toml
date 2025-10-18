@@ -4,6 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "blackbody"
+version = "0.1.0b1"
 description = "A Python library for computing blackbody radiation"
 readme = "README.md"
 requires-python = ">=3.7"
@@ -19,7 +20,19 @@ dependencies = [
   "numpy",
   "scipy",
 ]
-dynamic = ["version"]
+
+[dependency-groups]
+dev = [
+  "matplotlib",
+  "mkdocs-material",
+  "mkdocstrings[python]",
+  "mypy",
+  "pip-tools",
+  "pre-commit",
+  "pytest",
+  "pytest-cov",
+  "pytest-mypy",
+]
 
 [project.optional-dependencies]
 examples = [
@@ -42,8 +55,9 @@ ignore = [
   "E20", "E22", "E501", "E731",
 ]
 
-[tool.hatch.version]
-path = "src/blackbody/__about__.py"
+[tool.hatch.build]
+only-packages = true
+packages = ["src/blackbody"]
 
 [[tool.mypy.overrides]]
 module = [
