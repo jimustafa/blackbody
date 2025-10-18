@@ -4,22 +4,35 @@ build-backend = "hatchling.build"
 
 [project]
 name = "blackbody"
+version = "0.1.0"
 description = "A Python library for computing blackbody radiation"
 readme = "README.md"
-requires-python = ">=3.7"
 license = "MIT"
+license-files = ["LICENSE"]
 authors = [
-  { name = "Jamal Mustafa" },
+  { name = "Jamal Mustafa", email = "jimustafa@gmail.com" }
 ]
 classifiers = [
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
 ]
+requires-python = ">=3.10"
 dependencies = [
-  "numpy",
-  "scipy",
+  "numpy>=1.23,<3.0",
+  "scipy>=1.13,<1.16",
 ]
-dynamic = ["version"]
+
+[dependency-groups]
+dev = [
+  "matplotlib",
+  "mkdocs-material",
+  "mkdocstrings[python]",
+  "mypy",
+  "pre-commit",
+  "pytest",
+  "pytest-cov",
+  "pytest-mypy",
+]
 
 [project.optional-dependencies]
 examples = [
@@ -42,8 +55,9 @@ ignore = [
   "E20", "E22", "E501", "E731",
 ]
 
-[tool.hatch.version]
-path = "src/blackbody/__about__.py"
+[tool.hatch.build]
+only-packages = true
+packages = ["src/blackbody"]
 
 [[tool.mypy.overrides]]
 module = [
