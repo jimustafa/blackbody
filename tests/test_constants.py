@@ -1,16 +1,12 @@
 import itertools
 
-import blackbody as bb
-
 import pytest
+
+import blackbody as bb
 
 
 @pytest.mark.parametrize(
-    'flux_unit,spectral_unit',
-    itertools.product(
-        bb.FLUX_UNITS,
-        bb.SPECTRAL_UNITS
-    )
+    "flux_unit,spectral_unit", itertools.product(bb.FLUX_UNITS, bb.SPECTRAL_UNITS)
 )
 def test_units_keys(flux_unit, spectral_unit):
     assert (flux_unit, spectral_unit) in bb.PLANCK_DISTRIBUTIONS
@@ -19,9 +15,6 @@ def test_units_keys(flux_unit, spectral_unit):
     assert (flux_unit, spectral_unit) in bb.WIEN_CONSTANTS
 
 
-@pytest.mark.parametrize(
-    'area_unit',
-    bb.AREA_UNITS
-)
+@pytest.mark.parametrize("area_unit", bb.AREA_UNITS)
 def test_area_factors_keys(area_unit):
     assert area_unit in bb.AREA_FACTORS
