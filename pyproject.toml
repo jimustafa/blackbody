@@ -43,16 +43,8 @@ Documentation = "https://jimustafa.github.io/blackbody"
 Issues = "https://github.com/jimustafa/blackbody/issues"
 Source = "https://github.com/jimustafa/blackbody"
 
-[tool.autopep8]
-select = ["E231"]
-
 [tool.coverage.report]
 show_missing = true
-
-[tool.flake8]
-ignore = [
-  "E20", "E22", "E501", "E731",
-]
 
 [tool.hatch.build]
 only-packages = true
