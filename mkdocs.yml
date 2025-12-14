@@ -23,9 +23,6 @@ plugins:
       handlers:
         python:
           paths: [src]
-          options:
-            members_order: source
-            show_root_toc_entry: false
   - search
 
 extra:
