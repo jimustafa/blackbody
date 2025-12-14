@@ -29,7 +29,7 @@ def test_Stefan_Boltzmann(T, flux_unit, spectral_unit, method):
             L_integral = scipy.integrate.quad(
                 lambda x: bb.spectral_radiant_sterance(
                     T, x, spectral_unit=spectral_unit, area_unit="m^2"
-                )[0],
+                ),
                 0,
                 np.inf,
             )[0]
@@ -37,7 +37,7 @@ def test_Stefan_Boltzmann(T, flux_unit, spectral_unit, method):
             L_integral = scipy.integrate.quad(
                 lambda x: bb.spectral_photon_sterance(
                     T, x, spectral_unit=spectral_unit, area_unit="m^2"
-                )[0],
+                ),
                 0,
                 np.inf,
             )[0]

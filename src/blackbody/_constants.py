@@ -1,6 +1,10 @@
+import typing
+
 import numpy as np
 from scipy.constants import c, h, k, sigma
 from scipy.special import lambertw, zeta
+
+from ._types import AreaUnit, SpectralUnit
 
 __all__ = [
     "FLUX_UNITS",
@@ -15,22 +19,14 @@ __all__ = [
 
 EMAXEXP = np.log(2) * np.finfo(np.float64).maxexp
 
-FLUX_UNITS: list[str] = [
+FLUX_UNITS: tuple[str, ...] = (
     "energy",
     "photon",
-]
+)
 
-SPECTRAL_UNITS: list[str] = [
-    "Hz",
-    "THz",
-    "um",
-    "cm^-1",
-]
+SPECTRAL_UNITS: tuple[str, ...] = typing.get_args(SpectralUnit)
 
-AREA_UNITS: list[str] = [
-    "m^2",
-    "cm^2",
-]
+AREA_UNITS: tuple[str, ...] = typing.get_args(AreaUnit)
 
 AREA_FACTORS: dict[str, float] = {
     "m^2": 1,

@@ -19,8 +19,8 @@ ax2 = ax1.twinx()
 x1 = np.linspace(0, 18, 37)
 x2 = np.linspace(18, 35, 35)
 
-ax1.plot(x1, bb._planck._planck_integral_3(x1, 100))  # type: ignore
-ax2.plot(x2, bb._planck._planck_integral_3(x2, 100))  # type: ignore
+ax1.plot(x1, bb._planck._planck_integral_3(x1, 100))
+ax2.plot(x2, bb._planck._planck_integral_3(x2, 100))
 
 ax1.axvline(18, color="black", linestyle="dashed")
 
@@ -51,9 +51,7 @@ sigma_ab = np.array(
 
 Tx = np.linspace(200, 300, 21)
 
-Le = bb.integrated_radiant_sterance(
-    Tx[..., np.newaxis], sigma_ab, spectral_unit="cm^-1", area_unit="cm^2"
-)
+Le = bb.integrated_radiant_sterance(Tx, sigma_ab, spectral_unit="cm^-1", area_unit="cm^2")
 
 (fig, ax) = plt.subplots()
 
