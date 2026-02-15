@@ -1,20 +1,21 @@
 [project]
 name = "blackbody"
-version = "0.1.0b1"
+version = "0.1.0"
 description = "A Python library for computing blackbody radiation"
 readme = "README.md"
-requires-python = ">=3.10"
 license = "MIT"
+license-files = ["LICENSE"]
 authors = [
-  { name = "Jamal Mustafa" },
+  { name = "Jamal Mustafa", email = "jimustafa@gmail.com" }
 ]
 classifiers = [
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
 ]
+requires-python = ">=3.10"
 dependencies = [
-  "numpy",
-  "scipy",
+  "numpy>=1.23,<3.0",
+  "scipy>=1.13,<1.16",
 ]
 
 [dependency-groups]
