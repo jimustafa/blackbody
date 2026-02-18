@@ -2,9 +2,12 @@ name: main
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches:
+      - develop
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -13,12 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: astral-sh/setup-uv@v7
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version-file: .python-version
+
+      - uses: astral-sh/setup-uv@v7
 
       - name: Build package
         run: |
@@ -36,12 +39,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: astral-sh/setup-uv@v7
-
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+
+      - uses: astral-sh/setup-uv@v7
 
       - name: Test package
         run: |
