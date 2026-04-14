@@ -6,8 +6,8 @@ from numpy.typing import NDArray
 from ._constants import EMAXEXP
 
 __all__ = [
-    "PLANCK_DISTRIBUTIONS",
-    "INTEGRATED_PLANCK_DISTRIBUTIONS",
+    "PLANCK_SPECTRA",
+    "PLANCK_INTEGRALS",
 ]
 
 
@@ -129,31 +129,31 @@ def _integrated_photon_sterance_sigma(
     return c1 / c2**3 * T**3 * _planck_integral_2(c2 * sigma / T)
 
 
-PLANCK_DISTRIBUTIONS: dict[
+PLANCK_SPECTRA: dict[
     tuple[str, str],
     Callable[[float, float, NDArray[np.float64], NDArray[np.float64]], NDArray[np.float64]],
 ] = {
-    ("energy", "Hz"): _spectral_radiant_sterance_nu,
+    ("radiant", "Hz"): _spectral_radiant_sterance_nu,
     ("photon", "Hz"): _spectral_photon_sterance_nu,
-    ("energy", "THz"): _spectral_radiant_sterance_nu,
+    ("radiant", "THz"): _spectral_radiant_sterance_nu,
     ("photon", "THz"): _spectral_photon_sterance_nu,
-    ("energy", "um"): _spectral_radiant_sterance_lambda,
+    ("radiant", "um"): _spectral_radiant_sterance_lambda,
     ("photon", "um"): _spectral_photon_sterance_lambda,
-    ("energy", "cm^-1"): _spectral_radiant_sterance_sigma,
+    ("radiant", "cm^-1"): _spectral_radiant_sterance_sigma,
     ("photon", "cm^-1"): _spectral_photon_sterance_sigma,
 }
 
 
-INTEGRATED_PLANCK_DISTRIBUTIONS: dict[
+PLANCK_INTEGRALS: dict[
     tuple[str, str],
     Callable[[float, float, NDArray[np.float64], NDArray[np.float64]], NDArray[np.float64]],
 ] = {
-    ("energy", "Hz"): _integrated_radiant_sterance_nu,
+    ("radiant", "Hz"): _integrated_radiant_sterance_nu,
     ("photon", "Hz"): _integrated_photon_sterance_nu,
-    ("energy", "THz"): _integrated_radiant_sterance_nu,
+    ("radiant", "THz"): _integrated_radiant_sterance_nu,
     ("photon", "THz"): _integrated_photon_sterance_nu,
-    ("energy", "um"): _integrated_radiant_sterance_lambda,
+    ("radiant", "um"): _integrated_radiant_sterance_lambda,
     ("photon", "um"): _integrated_photon_sterance_lambda,
-    ("energy", "cm^-1"): _integrated_radiant_sterance_sigma,
+    ("radiant", "cm^-1"): _integrated_radiant_sterance_sigma,
     ("photon", "cm^-1"): _integrated_photon_sterance_sigma,
 }

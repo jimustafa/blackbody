@@ -30,7 +30,7 @@ for T in [100, 200, 300, 400, 500]:
     )
 
 Tx = np.linspace(10, 600, 60)
-nu_peak = bb.WIEN_CONSTANTS[("energy", "Hz")] * Tx
+nu_peak = bb.WIEN_CONSTANTS[("radiant", "Hz")] * Tx
 ax1.plot(
     nu_peak,
     bb.spectral_radiant_sterance(Tx, nu_peak, spectral_unit="Hz", area_unit="m^2"),
@@ -76,7 +76,7 @@ for T in [100, 200, 300, 400, 500]:
     )
 
 Tx = np.linspace(10, 600, 60)
-lambda_peak = bb.WIEN_CONSTANTS[("energy", "um")] / Tx
+lambda_peak = bb.WIEN_CONSTANTS[("radiant", "um")] / Tx
 ax1.plot(
     lambda_peak,
     bb.spectral_radiant_sterance(Tx, lambda_peak, spectral_unit="um", area_unit="m^2"),
@@ -122,7 +122,7 @@ for T in [100, 200, 300, 400, 500]:
     )
 
 Tx = np.linspace(10, 600, 60)
-sigma_peak = bb.WIEN_CONSTANTS[("energy", "cm^-1")] * Tx
+sigma_peak = bb.WIEN_CONSTANTS[("radiant", "cm^-1")] * Tx
 ax1.plot(
     sigma_peak,
     bb.spectral_radiant_sterance(Tx, sigma_peak, spectral_unit="cm^-1", area_unit="m^2"),

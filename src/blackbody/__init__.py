@@ -14,8 +14,8 @@ from ._constants import (
     WIEN_CONSTANTS,
 )
 from ._planck import (
-    INTEGRATED_PLANCK_DISTRIBUTIONS,
-    PLANCK_DISTRIBUTIONS,
+    PLANCK_INTEGRALS,
+    PLANCK_SPECTRA,
 )
 from ._types import (
     AreaUnit,
@@ -30,8 +30,8 @@ __all__ = [
     "RADIATION_CONSTANTS",
     "STEFAN_BOLTZMANN_CONSTANTS",
     "WIEN_CONSTANTS",
-    "INTEGRATED_PLANCK_DISTRIBUTIONS",
-    "PLANCK_DISTRIBUTIONS",
+    "PLANCK_INTEGRALS",
+    "PLANCK_SPECTRA",
     "spectral_radiant_sterance",
     "spectral_photon_sterance",
     "integrated_radiant_sterance",
@@ -83,11 +83,11 @@ def spectral_radiant_sterance(
     T = cast(NDArray[np.float64], T)
     x = cast(NDArray[np.float64], x)
 
-    (c1, c2) = RADIATION_CONSTANTS[("energy", spectral_unit)]
+    (c1, c2) = RADIATION_CONSTANTS[("radiant", spectral_unit)]
 
-    _planck_distribution = PLANCK_DISTRIBUTIONS[("energy", spectral_unit)]
+    _planck_spectrum = PLANCK_SPECTRA[("radiant", spectral_unit)]
 
-    return np.squeeze(_planck_distribution(c1, c2, T, x)) * AREA_FACTORS[area_unit]
+    return np.squeeze(_planck_spectrum(c1, c2, T, x)) * AREA_FACTORS[area_unit]
 
 
 @check_arguments_spectral
@@ -112,9 +112,9 @@ def spectral_photon_sterance(
 
     (c1, c2) = RADIATION_CONSTANTS[("photon", spectral_unit)]
 
-    _planck_distribution = PLANCK_DISTRIBUTIONS[("photon", spectral_unit)]
+    _planck_spectrum = PLANCK_SPECTRA[("photon", spectral_unit)]
 
-    return np.squeeze(_planck_distribution(c1, c2, T, x)) * AREA_FACTORS[area_unit]
+    return np.squeeze(_planck_spectrum(c1, c2, T, x)) * AREA_FACTORS[area_unit]
 
 
 def check_arguments_integrated(fn: Callable) -> Callable:
@@ -167,12 +167,12 @@ def integrated_radiant_sterance(
     T = cast(NDArray[np.float64], T)
     x_ab = cast(NDArray[np.float64], x_ab)
 
-    (c1, c2) = RADIATION_CONSTANTS[("energy", spectral_unit)]
+    (c1, c2) = RADIATION_CONSTANTS[("radiant", spectral_unit)]
 
-    _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[("energy", spectral_unit)]
+    _planck_integral = PLANCK_INTEGRALS[("radiant", spectral_unit)]
 
-    i1 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 0])
-    i2 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 1])
+    i1 = _planck_integral(c1, c2, T, x_ab[..., 0])
+    i2 = _planck_integral(c1, c2, T, x_ab[..., 1])
 
     return np.squeeze(np.abs(i2 - i1)) * AREA_FACTORS[area_unit]
 
@@ -198,9 +198,9 @@ def integrated_photon_sterance(
 
     (c1, c2) = RADIATION_CONSTANTS[("photon", spectral_unit)]
 
-    _integrated_planck_distribution = INTEGRATED_PLANCK_DISTRIBUTIONS[("photon", spectral_unit)]
+    _planck_integral = PLANCK_INTEGRALS[("photon", spectral_unit)]
 
-    i1 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 0])
-    i2 = _integrated_planck_distribution(c1, c2, T, x_ab[..., 1])
+    i1 = _planck_integral(c1, c2, T, x_ab[..., 0])
+    i2 = _planck_integral(c1, c2, T, x_ab[..., 1])
 
     return np.squeeze(np.abs(i2 - i1)) * AREA_FACTORS[area_unit]
