@@ -6,6 +6,15 @@ import pytest
 import scipy.integrate
 
 import blackbody as bb
+from blackbody._constants import EMAXEXP
+
+
+def _spectral_limits(T, flux_unit, spectral_unit):
+    c2 = bb.RADIATION_CONSTANTS[(flux_unit, spectral_unit)][1]
+    if spectral_unit == "um":
+        return [c2 / (EMAXEXP * T), c2 / (1e-3 * T)]
+    else:
+        return [1e-3 * T / c2, EMAXEXP * T / c2]
 
 
 @pytest.fixture(scope="module")
@@ -16,7 +25,7 @@ def T():
 @pytest.mark.parametrize(
     "method,flux_unit,spectral_unit",
     itertools.product(
-        ["scipy.integrate.quad", "PLANCK_INTEGRALS"],
+        ["scipy.integrate.quad", "integrated sterance"],
         bb.FLUX_UNITS,
         bb.SPECTRAL_UNITS,
     ),
@@ -42,15 +51,16 @@ def test_Stefan_Boltzmann(T, flux_unit, spectral_unit, method):
                 np.inf,
             )[0]
 
-    if method == "PLANCK_INTEGRALS":
-        (c1, c2) = bb.RADIATION_CONSTANTS[(flux_unit, spectral_unit)]
-
-        _planck_integral = bb.PLANCK_INTEGRALS[(flux_unit, spectral_unit)]
-
-        if spectral_unit == "um":
-            L_integral = _planck_integral(c1, c2, T, 1e12)
-        else:
-            L_integral = _planck_integral(c1, c2, T, 0)
+    if method == "integrated sterance":
+        x_ab = _spectral_limits(T, flux_unit, spectral_unit)
+        if flux_unit == "radiant":
+            L_integral = bb.integrated_radiant_sterance(
+                T, x_ab, spectral_unit=spectral_unit, area_unit="m^2"
+            )
+        if flux_unit == "photon":
+            L_integral = bb.integrated_photon_sterance(
+                T, x_ab, spectral_unit=spectral_unit, area_unit="m^2"
+            )
 
     sigma = bb.STEFAN_BOLTZMANN_CONSTANTS[flux_unit]
 
