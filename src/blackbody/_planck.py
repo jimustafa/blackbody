@@ -14,61 +14,55 @@ __all__ = [
 def _spectral_radiant_sterance_nu(
     c1: float, c2: float, T: NDArray[np.float64], nu: NDArray[np.float64]
 ):
-    x = nu / T
-    xmax = EMAXEXP / c2
-    x[x > xmax] = xmax
+    x = c2 * nu / T
+    x[x > EMAXEXP] = EMAXEXP
 
-    return c1 * nu**3 * 1 / (np.exp(c2 * x) - 1)
+    return c1 * nu**3 / (np.exp(x) - 1)
 
 
 def _spectral_photon_sterance_nu(
     c1: float, c2: float, T: NDArray[np.float64], nu: NDArray[np.float64]
 ):
-    x = nu / T
-    xmax = EMAXEXP / c2
-    x[x > xmax] = xmax
+    x = c2 * nu / T
+    x[x > EMAXEXP] = EMAXEXP
 
-    return c1 * nu**2 * 1 / (np.exp(c2 * x) - 1)
+    return c1 * nu**2 / (np.exp(x) - 1)
 
 
 def _spectral_radiant_sterance_lambda(
     c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]
 ):
-    x = 1 / (xlambda * T)
-    xmax = EMAXEXP / c2
-    x[x > xmax] = xmax
+    x = c2 / (xlambda * T)
+    x[x > EMAXEXP] = EMAXEXP
 
-    return c1 / xlambda**5 * 1 / (np.exp(c2 * x) - 1)
+    return c1 / xlambda**5 / (np.exp(x) - 1)
 
 
 def _spectral_photon_sterance_lambda(
     c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]
 ):
-    x = 1 / (xlambda * T)
-    xmax = EMAXEXP / c2
-    x[x > xmax] = xmax
+    x = c2 / (xlambda * T)
+    x[x > EMAXEXP] = EMAXEXP
 
-    return c1 / xlambda**4 * 1 / (np.exp(c2 * x) - 1)
+    return c1 / xlambda**4 / (np.exp(x) - 1)
 
 
 def _spectral_radiant_sterance_sigma(
     c1: float, c2: float, T: NDArray[np.float64], sigma: NDArray[np.float64]
 ):
-    x = sigma / T
-    xmax = EMAXEXP / c2
-    x[x > xmax] = xmax
+    x = c2 * sigma / T
+    x[x > EMAXEXP] = EMAXEXP
 
-    return c1 * sigma**3 * 1 / (np.exp(c2 * x) - 1)
+    return c1 * sigma**3 / (np.exp(x) - 1)
 
 
 def _spectral_photon_sterance_sigma(
     c1: float, c2: float, T: NDArray[np.float64], sigma: NDArray[np.float64]
 ):
-    x = sigma / T
-    xmax = EMAXEXP / c2
-    x[x > xmax] = xmax
+    x = c2 * sigma / T
+    x[x > EMAXEXP] = EMAXEXP
 
-    return c1 * sigma**2 * 1 / (np.exp(c2 * x) - 1)
+    return c1 * sigma**2 / (np.exp(x) - 1)
 
 
 def _planck_integral_2(x, N=1024):
@@ -108,13 +102,13 @@ def _integrated_photon_sterance_nu(
 def _integrated_radiant_sterance_lambda(
     c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]
 ):
-    return c1 / c2**4 * T**4 * _planck_integral_3(c2 / xlambda / T)
+    return c1 / c2**4 * T**4 * _planck_integral_3(c2 / (xlambda * T))
 
 
 def _integrated_photon_sterance_lambda(
     c1: float, c2: float, T: NDArray[np.float64], xlambda: NDArray[np.float64]
 ):
-    return c1 / c2**3 * T**3 * _planck_integral_2(c2 / xlambda / T)
+    return c1 / c2**3 * T**3 * _planck_integral_2(c2 / (xlambda * T))
 
 
 def _integrated_radiant_sterance_sigma(
